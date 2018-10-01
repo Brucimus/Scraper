@@ -1,6 +1,10 @@
+var express = require("express");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("../models");
+
+// Initialize Express
+var app = express();
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {

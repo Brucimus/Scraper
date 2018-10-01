@@ -1,5 +1,6 @@
 //Requirements
 var express = require("express");
+var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
@@ -18,10 +19,30 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/week18Populater", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/week18Populater", { useNewUrlParser: true });
+
+// Handlebars
+app.engine(
+    "handlebars",
+    exphbs({
+      helpers: {
+        formatDate: function (datetime, format) {
+          if (moment) {
+            format = DateFormats[format] || format;
+            return moment(datetime).format(format);
+          }
+          else {
+            return datetime;
+          }
+        }
+      },
+      defaultLayout: "main"
+    })
+  );
+  app.set("view engine", "handlebars");
 
 //Routes
-require("./controllers/apiRoutes.js")(app);
+require("./controllers/apiRoutes.js");
 
 // Start the server
 app.listen(PORT, function() {

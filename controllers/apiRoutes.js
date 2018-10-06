@@ -63,10 +63,10 @@ module.exports = function (app) {
         });
     });
     
-    // Route for grabbing a specific Product by id, populate it with notes
+    // Route for grabbing a specific Product by id, populate it with it's note
     app.get("/products/:id", function(req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-        db.Product.find({ _id: req.params.id })
+        db.Product.findOne({ _id: req.params.id },{title:0, link:0,notes:1})
         // ..and populate all of the notes associated with it
         .populate("note")
         .then(function(dbProduct) {

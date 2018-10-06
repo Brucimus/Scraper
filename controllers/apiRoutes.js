@@ -7,6 +7,10 @@ var db = require("../models");
 var app = express();
 
 module.exports = function (app) {
+    app.get("/", function(req, res) {
+        res.render("index");
+      })
+
     // A GET route for scraping the echoJS website
     app.get("/scrape", function(req, res) {
         // First, we grab the body of the html with axios
@@ -80,10 +84,10 @@ module.exports = function (app) {
         // Create a new note and pass the req.body to the entry
         db.Note.create(req.body)
         .then(function(dbNote) {
-            // If a Note was created successfully, find one Product with an `_id` equal to `req.params.id`. Update the Product to be associated with the new Note
+            // If a Note was created successfully, find one Product with an `_id` equal to `req.params.id` and push the new Note's _id to the Product's `notes` array
             // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
             // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-            return db.Product.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+            return db.Product.findOneAndUpdate({ _id: req.params.id }, { $push: { notes: dbNote._id }}, { new: true });
         })
         .then(function(dbProduct) {
             // If we were able to successfully update an Product, send it back to the client

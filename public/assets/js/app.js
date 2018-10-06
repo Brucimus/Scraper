@@ -1,15 +1,26 @@
-// Grab the articles as a json
-$.getJSON("/articles", function(data) {
+// Grab the products as a json
+$.getJSON("/products", function(data) {
     // For each one
+    console.log(data);
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+      $("#products").append("<tr>" +
+        "<td>"+
+          "<button type='button' class='btn btn-primary' data-id=" + data[i]._id +">Notes</button>" + 
+        "</td>" + 
+        "<td>" + 
+          "<p>" + 
+            "<a href='" + data[i].link + "'>" + 
+              data[i].title +
+            "</a>" + 
+          "</p>" + 
+        "</tr>");
     }
   });
   
   
   // Whenever someone clicks a p tag
-  $(document).on("click", "p", function() {
+  $(document).on("click", "button", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -18,7 +29,7 @@ $.getJSON("/articles", function(data) {
     // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
-      url: "/articles/" + thisId
+      url: "/products/" + thisId
     })
       // With that done, add the note information to the page
       .then(function(data) {
@@ -50,7 +61,7 @@ $.getJSON("/articles", function(data) {
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
       method: "POST",
-      url: "/articles/" + thisId,
+      url: "/products/" + thisId,
       data: {
         // Value taken from title input
         title: $("#titleinput").val(),

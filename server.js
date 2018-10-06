@@ -12,7 +12,7 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 
-// Parse request body as JSON
+// Parse request body JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder

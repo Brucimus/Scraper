@@ -6,7 +6,7 @@ $.getJSON("/products", function(data) {
       // Display the apropos information on the page
       $("#products").append("<tr>" +
         "<td>"+
-          "<button type='button' class='btn btn-primary' data-id=" + data[i]._id +">Notes</button>" + 
+          "<button type='button' class='btn btn-primary' data-id=" + data[i]._id +"data-toggle='modal' data-target='#exampleModalLong'>Notes</button>" + 
         "</td>" + 
         "<td>" + 
           "<p>" + 

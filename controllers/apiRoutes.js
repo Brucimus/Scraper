@@ -69,7 +69,7 @@ module.exports = function (app) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
         db.Product.findOne({ _id: req.params.id },{title:0, link:0,_id:0})
         // ..and populate all of the notes associated with it
-        .populate("note")
+        .populate("notes")
         .then(function(dbProduct) {
             console.log("two");
             // If we were able to successfully find an Product with the given id, send it back to the client

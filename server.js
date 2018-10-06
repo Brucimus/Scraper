@@ -18,7 +18,7 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-// Connect to the Mongo DB
+// Connect to Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/scraperHW", { useNewUrlParser: true });
 // mongoose.connect(MONGODB_URI);
 

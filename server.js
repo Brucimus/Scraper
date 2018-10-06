@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://@ds125073.mlab.com:25073/heroku_tmcjbw0r", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/scraperHW", { useNewUrlParser: true });
+mongoose.connect("mongodb://<Origin>:<KdtWGaQuwhEJJE4>@ds125073.mlab.com:25073/heroku_tmcjbw0r", { useNewUrlParser: true });
 
 // Handlebars
 app.engine(

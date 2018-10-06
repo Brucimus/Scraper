@@ -21,11 +21,11 @@ $.getJSON("/products", function(data) {
   
   // Whenever someone clicks a p tag
   $(document).on("click", "button", function() {
+    console.log("hi");
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
     var thisId = $(this).attr("data-id");
-  
     // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
@@ -33,28 +33,9 @@ $.getJSON("/products", function(data) {
     })
       // With that done, add the note information to the page
       .then(function(data) {
-        console.log(data);
+        // console.log(data);
         // The title of the article
-        $("#notes").append("<div class='modal fade' id='exampleModalLong' tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true>"
-        +"<div class='modal-dialog' role='document'>"
-            +"<div class='modal-content'>"
-                +"<div class='modal-header'>"
-                    +"<h5 class='modal-title' id='exampleModalLongTitle'>Modal title</h5>"
-                    +"<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
-                    +"<span aria-hidden='true'>&times;</span>"
-                    +"</button>"
-                +"</div>"
-                +"<div class='modal-body' id='notes'>"
-                +"</div>"
-                +"<div class='modal-footer'>"
-                    +"<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"
-                    +"<button type='button' class='btn btn-primary'>Save changes</button>"
-                +"</div>"
-            +"</div>"
-        +"</div>"
-    +"</div>"
-+"</div>");
-        // $("#notes").append("<h2>" + data.title + "</h2>");
+        $("#notes").append("<h2>" + data.title + "</h2>");
         // // An input to enter a new title
         // $("#notes").append("<input id='titleinput' name='title' >");
         // // A textarea to add a new note body
@@ -62,7 +43,7 @@ $.getJSON("/products", function(data) {
         // // A button to submit a new note, with the id of the article saved to it
         // $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
   
-        // // If there's a note in the article
+        // If there's a note in the article
         // if (data.note) {
         //   // Place the title of the note in the title input
         //   $("#titleinput").val(data.note.title);

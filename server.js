@@ -20,7 +20,6 @@ app.use(express.static("public"));
 
 // Connect to Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/scraperHW", { useNewUrlParser: true });
-// mongoose.connect(MONGODB_URI);
 
 // Handlebars
 app.engine(

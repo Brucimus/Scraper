@@ -38,8 +38,8 @@ $.getJSON("/products", function(data) {
         $("#notes").append("<div class='modal-body'>");
           {/* console.log(data.notes.length); */}
           for (var i=0; i < data.notes.length; i++) {
-            $("#notes").append("<h5>" + data.notes[i] + "</h5>");
-            $("#notes").append("<p>" + data.notes[i] + "</p>");
+            $("#notes").append("<h5>" + data.notes[i].title + "</h5>");
+            $("#notes").append("<p>" + data.notes[i].body + "</p>");
           }
         $("#notes").append("</div>");
         $("#notes").append("<div class='modal-footer'>");

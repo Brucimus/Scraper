@@ -6,7 +6,7 @@ $.getJSON("/products", function(data) {
       // Display the apropos information on the page
       $("#products").append("<tr>" +
         "<td>"+
-          "<button type='button' class='btn btn-primary' data-id=" + data[i]._id +"data-toggle='modal' data-target='#exampleModalLong'>Notes</button>" + 
+          "<button type='button' class='btn btn-primary' data-id='" + data[i]._id +"' data-toggle='modal' data-target='#exampleModalLong'>Notes</button>" + 
         "</td>" + 
         "<td>" + 
           "<p>" + 
@@ -35,7 +35,12 @@ $.getJSON("/products", function(data) {
       .then(function(data) {
         // console.log(data);
         // The title of the article
-        $("#notes").append("<h2>" + data.title + "</h2>");
+        console.log(data.notes.length);
+        for (var i=0; i < data.notes.length; i++) {
+          console.log(data.notes[i]);
+          $("#notes").append("<h5>" + data.notes[i] + "</h5>");
+          $("#notes").append("<p>" + data.notes[i] + "</p>");
+        }
         // // An input to enter a new title
         // $("#notes").append("<input id='titleinput' name='title' >");
         // // A textarea to add a new note body

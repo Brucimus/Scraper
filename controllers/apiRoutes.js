@@ -65,13 +65,13 @@ module.exports = function (app) {
     
     // Route for grabbing a specific Product by id, populate it with it's note
     app.get("/products/:id", function(req, res) {
-        console.log("one");
+        // console.log("one");
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
         db.Product.findOne({ _id: req.params.id })
         // ..and populate all of the notes associated with it
         .populate("notes")
         .then(function(dbProduct) {
-            console.log("two");
+            // console.log("two");
             // If we were able to successfully find an Product with the given id, send it back to the client
             res.json(dbProduct);
         })
@@ -84,9 +84,13 @@ module.exports = function (app) {
     
     // Route for saving/updating an Product's associated Note
     app.post("/products/:id", function(req, res) {
+        console.log("one");
+
         // Create a new note and pass the req.body to the entry
         db.Note.create(req.body)
         .then(function(dbNote) {
+            console.log(req.params.id)
+            console.log(dbNote);
             // If a Note was created successfully, find one Product with an `_id` equal to `req.params.id` and push the new Note's _id to the Product's `notes` array
             // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
             // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
